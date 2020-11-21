@@ -7,7 +7,6 @@ let stockXFee = 0;
 
 // IMG Variables
 const imageHeader = document.querySelector('.allPlatforms');
-
 let imageSRC = ['goatFlightPic.jpg', 'stockX.png'];
 
 // Output Variables
@@ -15,7 +14,7 @@ let goatProfit = document.querySelector('.goatOutPut');
 let flightProfit = document.querySelector('.flightOutPut');
 let stockxProfit = document.querySelector('.stockxOutPut');
 
-// functions
+// Picture Interval Function
 let i = 0;
 setInterval(function () {
   imageHeader.style.backgroundImage = 'url(' + imageSRC[i] + ')';
@@ -25,6 +24,7 @@ setInterval(function () {
   }
 }, 1000);
 
+// SellerFee Calc Functions
 const goatFlightCalc = sellPrice => sellPrice * 0.124 + 5.0;
 const stockXCalc = sellPrice => sellPrice * 0.115;
 const goatFlightFunc = function (func) {
