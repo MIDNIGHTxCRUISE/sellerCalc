@@ -5,6 +5,13 @@ let inputPrice = document.querySelector('.platForm1');
 let goatFee = 0;
 let stockXFee = 0;
 
+// Element Variables
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.close-modal');
+const btnsOpenModal = document.querySelectorAll('.show-modal');
+const gridContainer = document.querySelector('.grid-container');
+
 // IMG Variables
 const imageHeader = document.querySelector('.allPlatforms');
 let imageSRC = ['goatFlightPic.jpg', 'stockX.png'];
@@ -46,7 +53,7 @@ const goatFlightFunc = function (func) {
   }
 };
 
-// Event
+// Event #1
 window.addEventListener('keydown', function (ev) {
   if (ev.key === 'Enter') {
     ev.preventDefault();
@@ -54,4 +61,18 @@ window.addEventListener('keydown', function (ev) {
   } else {
     console.log('You did not press enter');
   }
+});
+
+// Event #2
+for (let i = 0; i < btnsOpenModal.length; i++)
+  btnsOpenModal[i].addEventListener('click', function () {
+    console.log('Button Clicked');
+    modal.classList.remove('hidden');
+    gridContainer.style.marginTop = '350px';
+  });
+
+// Event #3
+btnCloseModal.addEventListener('click', function () {
+  modal.classList.add('hidden');
+  gridContainer.style.marginTop = '0px';
 });
