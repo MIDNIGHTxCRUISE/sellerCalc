@@ -36,6 +36,7 @@ const goatFlightCalc = sellPrice => sellPrice * 0.124 + 5.0;
 const stockXCalc = sellPrice => sellPrice * 0.115;
 const goatFlightFunc = function (func) {
   if (parseInt(inputPrice.value) > 0) {
+    closeModal();
     document.querySelector('.upwardOrDown').innerHTML = `📈 `;
 
     goatFee = goatFlightCalc(parseInt(inputPrice.value));
@@ -46,11 +47,25 @@ const goatFlightFunc = function (func) {
     const stockSalePrice = parseInt(inputPrice.value) - stockXFee;
     stockxProfit.innerHTML = `🧱 $${stockSalePrice}`;
   } else {
+    closeModal();
     document.querySelector('.upwardOrDown').innerHTML = `📉 `;
     goatProfit.innerHTML = `$0.00`;
     stockxProfit.innerHTML = `$0.00`;
     alert(`Can't Sell something for $0.00....`);
   }
+};
+
+// Modal Functions
+const openModal = function () {
+  console.log('Button Clicked');
+  modal.classList.remove('hidden');
+  gridContainer.style.marginTop = '350px';
+};
+
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+  gridContainer.style.marginTop = '0px';
 };
 
 // Event #1
@@ -65,14 +80,8 @@ window.addEventListener('keydown', function (ev) {
 
 // Event #2
 for (let i = 0; i < btnsOpenModal.length; i++)
-  btnsOpenModal[i].addEventListener('click', function () {
-    console.log('Button Clicked');
-    modal.classList.remove('hidden');
-    gridContainer.style.marginTop = '350px';
-  });
+  btnsOpenModal[i].addEventListener('click', openModal);
 
 // Event #3
-btnCloseModal.addEventListener('click', function () {
-  modal.classList.add('hidden');
-  gridContainer.style.marginTop = '0px';
-});
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
