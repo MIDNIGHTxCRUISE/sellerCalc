@@ -5,18 +5,19 @@ let inputPrice = document.querySelector('.platForm1');
 let goatFee = 0;
 let stockXFee = 0;
 
-// Element Variables
+// HTML Elements
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.close-modal');
 const btnsOpenModal = document.querySelectorAll('.show-modal');
 const gridContainer = document.querySelector('.grid-container');
+const trend = document.querySelector('.upwardOrDown');
 
-// IMG Variables
+// IMG
 const imageHeader = document.querySelector('.allPlatforms');
 let imageSRC = ['goatFlightPic.jpg', 'stockX.png'];
 
-// Output Variables
+// Output
 let goatProfit = document.querySelector('.goatOutPut');
 let flightProfit = document.querySelector('.flightOutPut');
 let stockxProfit = document.querySelector('.stockxOutPut');
@@ -32,12 +33,12 @@ setInterval(function () {
 }, 1000);
 
 // SellerFee Calc Functions
-const goatFlightCalc = sellPrice => sellPrice * 0.124 + 5.0;
+const goatFlightCalc = sellPrice => sellPrice * 0.124 - 5.0;
 const stockXCalc = sellPrice => sellPrice * 0.115;
 const goatFlightFunc = function (func) {
   if (parseInt(inputPrice.value) > 0) {
     closeModal();
-    document.querySelector('.upwardOrDown').innerHTML = `📈 `;
+    trend.innerHTML = `📈 `;
 
     goatFee = goatFlightCalc(parseInt(inputPrice.value));
     const goatSalePrice = parseInt(inputPrice.value) - goatFee;
@@ -48,7 +49,7 @@ const goatFlightFunc = function (func) {
     stockxProfit.innerHTML = `🧱 $${stockSalePrice}`;
   } else {
     closeModal();
-    document.querySelector('.upwardOrDown').innerHTML = `📉 `;
+    trend.innerHTML = `📉 `;
     goatProfit.innerHTML = `$0.00`;
     stockxProfit.innerHTML = `$0.00`;
     alert(`Can't Sell something for $0.00....`);
@@ -57,7 +58,6 @@ const goatFlightFunc = function (func) {
 
 // Modal Functions
 const openModal = function () {
-  console.log('Button Clicked');
   modal.classList.remove('hidden');
   gridContainer.style.marginTop = '350px';
 };
